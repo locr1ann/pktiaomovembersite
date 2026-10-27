@@ -77,7 +77,7 @@
 									<image href="images/ethan-nyman.png" x="170" y="20" width="32" height="32" preserveAspectRatio="xMidYMid slice"/><image href="images/jack-burton.png" x="170" y="58" width="28" height="28" preserveAspectRatio="xMidYMid slice"/><image href="images/zach-schulz.png" x="170" y="96" width="28" height="28" preserveAspectRatio="xMidYMid slice"/><image href="images/gage-durbin.png" x="170" y="134" width="28" height="28" preserveAspectRatio="xMidYMid slice"/><image href="images/simon-haden.png" x="170" y="172" width="28" height="28" preserveAspectRatio="xMidYMid slice"/><image href="images/luke-grant.png" x="170" y="210" width="28" height="28" preserveAspectRatio="xMidYMid slice"/><image href="images/ethan-vice.png" x="170" y="248" width="28" height="28" preserveAspectRatio="xMidYMid slice"/><image href="images/aiden-almanza.png" x="170" y="286" width="28" height="28" preserveAspectRatio="xMidYMid slice"/><image href="images/cooper-alvarado.png" x="170" y="324" width="28" height="28" preserveAspectRatio="xMidYMid slice"/><image href="images/chase-finley.png" x="170" y="362" width="28" height="28" preserveAspectRatio="xMidYMid slice"/><image href="images/kendrick-nantes.png" x="170" y="400" width="28" height="28" preserveAspectRatio="xMidYMid slice"/><image href="images/james-baker.png" x="170" y="438" width="28" height="28" preserveAspectRatio="xMidYMid slice"/><image href="images/aidan-cusack.png" x="170" y="476" width="28" height="28" preserveAspectRatio="xMidYMid slice"/><image href="images/owen-gerdes.png" x="170" y="514" width="28" height="28" preserveAspectRatio="xMidYMid slice"/>
 								</g>
 								<!-- Example totals, scaled to the $200 maximum. -->
-								<g fill="#5C0519">
+								<g id="fundraising-bars" fill="#5C0519">
 								<!-- Nyman-->
 									<rect x="270" y="23" width="1" height="22" rx="3"/>
 								<!-- Burton-->
@@ -165,7 +165,7 @@
 					}
 					}
 				const participants = [
-					new Participant("Ethan Nyman", "images/ethan-nyman.png", 0),
+					new Participant("Ethan Nyman", "images/ethan-nyman.png", 50),
 					new Participant("Jack Burton", "images/jack-burton.png", 0),
 					new Participant("Zach Schulz", "images/zach-schulz.png", 0),
 					new Participant("Gage Durbin", "images/gage-durbin.png", 0),
@@ -180,6 +180,29 @@
 					new Participant("Aidan Cusack", "images/aidan-cusack", 0),
 					new Participant("Owen Gerdes", "images/owen-gerdes", 0),
 					];
+
+				class FundraisingChart {
+					constructor(participants) {
+						this.participants = participants;
+						this.maxAmount = 200;
+						this.maxWidth = 640;
+					}
+					updateBars() {
+						const bars = document.querySelectorAll("#fundraising-bars rect");
+
+						bars.forEach((bar, index) => {
+							const participant = this.participants[index];
+
+							if(participant) {
+								const width =
+									(participant.amount / this.maxAmount) * this.maxWidth;
+								bar.setAttribute("width", Math.max(width, 1));
+							}
+						});
+					}
+				}
+				const chart = new FundraisingChart(participants);
+				chart.updateBars();
 				
 				(function () {
 					var modal = document.getElementById('photo-modal');
