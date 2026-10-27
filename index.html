@@ -125,6 +125,8 @@
 						<li><a href="https://www.paypal.com/paypalme/locr1ann" target="_blank" rel="noopener noreferrer"><img src="images/paypal.png" alt="" aria-hidden="true" /><span>@locr1ann</span><span class="sr-only"> on PayPal</span></a></li>
 					</ul>
 				</section>
+				
+				
 
 			<!-- Footer -->
 				<footer id="footer">
@@ -155,6 +157,30 @@
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
 			<script>
+					class Participant {
+						constructor(name, photo, amount) {
+						this.name = name;
+						this.photo = photo;
+						this.amount = amount;
+					}
+					}
+				const participants = [
+					new Participant("Ethan Nyman", "images/ethan-nyman.png", 0),
+					new Participant("Jack Burton", "images/jack-burton.png", 0),
+					new Participant("Zach Schulz", "images/zach-schulz.png", 0),
+					new Participant("Gage Durbin", "images/gage-durbin.png", 0),
+					new Participant("Simon Haden", "images/simon-haden.png", 0),
+					new Participant("Luke, Grant", "images/luke-grant.png", 0),
+					new Participant("Ethan Vice", "images/ethan-vice.png", 0),
+					new Participant("Aiden Almanza", "images/aiden-almanza.png", 0),
+					new Participant("Cooper Alvarado", "images/cooper-alvarado.png", 0),
+					new Participant("Chase Finley", "images/chase-finley.png", 0),
+					new Participant("Kendrick Nantes", "images/kendrick-nantes.png", 0),
+					new Participant("James Baker", "images/james-baker.png", 0),
+					new Participant("Aidan Cusack", "images/aidan-cusack", 0),
+					new Participant("Owen Gerdes", "images/owen-gerdes", 0),
+					];
+				
 				(function () {
 					var modal = document.getElementById('photo-modal');
 					var modalImage = document.getElementById('photo-modal-image');
