@@ -155,6 +155,7 @@
 					new Participant("Aidan Cusack", "images/aidan-cusack.png", 0),
 					new Participant("Owen Gerdes", "images/owen-gerdes.png", 0),
 					];
+				const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vS7bvmbXFRGVbKm1zIc_e4auRzQlJWMDfb2pBF_puK6VEpJHheEmOYYf9WDmwMdi2aiIGDRv46-EUuK/pub?gid=0&single=true&output=csv";
 
 				class FundraisingChart {
 					constructor(participants) {
@@ -205,10 +206,44 @@
 
 						});
 					}
+					async loadDonations() {
+    					try {
+       						const response = await fetch(sheetURL);
+
+        				if (!response.ok) {
+            				throw new Error("Could not load spreadsheet");
+        				}
+
+        			const csv = await response.text();
+        			const rows = csv.trim().split(/\r?\n/);
+
+        			// Skip row 1 (column headers)
+        			rows.slice(1).forEach((row, index) => {
+            			if (index >= this.participants.length) return;
+
+            			const columns = row.split(",");
+
+            		// Column G = index 6
+            			const amount = Number(
+                			columns[6].replace(/[$"]/g, "").trim()
+            			);
+
+            			if (Number.isFinite(amount) && amount >= 0) {
+                			this.participants[index].amount = amount;
+            			}
+        			});
+
+        				this.updateBars();
+
+    				} catch (error) {
+        				console.error("Donation loading failed:", error);
+    				}
+			}
 				}
 				const chart = new FundraisingChart(participants);
 				chart.updateBars();
 				chart.updateNames();
+				chart.loadDonations();
 				
 				(function () {
 					var modal = document.getElementById('photo-modal');
