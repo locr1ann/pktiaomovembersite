@@ -206,6 +206,25 @@
 
 						});
 					}
+					updatePics() {
+						const group = document.getElementById("participant-pics");
+						group.innerHTML = "";
+
+						this.participants(forEach((participant, index) => {
+							const pic = document.createElementNS(
+								"http://www.w3.org/2000/svg",
+								"image"
+						);
+						}
+						pic.setAttribute("href", participant.photo);
+						pic.setAttribute("x", 170);
+						pic.setAttribute("y", 20 + index * 38);
+						pic.setAttribute("width", 28);
+						pic.setAttribute("height", 28);
+						
+						group.appendChild(pic);
+					}
+
 					async loadDonations() {
     					try {
        						const response = await fetch(sheetURL);
