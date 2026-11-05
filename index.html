@@ -20,6 +20,45 @@
 			#donation-links li { margin:1.25rem 0; }
 			#donation-links a { display:inline-flex; align-items:center; gap:.75rem; font-size:1.25rem; }
 			#donation-links img { width:2rem; height:2rem; object-fit:contain; }
+
+			#header nav {
+				position: relative;
+			}
+			#menu-toggle {
+				background: transparent;
+				border: none;
+				box-shadow: none;
+				color: white;
+				font-size: 28px;
+				cursor: pointer;
+				padding: 0 12px;
+			}
+
+			#hamburger-menu {
+				position: absolute;
+				top: 100%;
+				right: 0;
+				min-width: 180px;
+				background: #333;
+				border-radius: 6px;
+				padding: 10px;
+				z-index: 1000;
+			}
+
+			#hamburger-menu[hidden] {
+				display: none;
+			}
+
+			#hamburger-menu a {
+				display: block;
+				padding: 10px 15px;
+				color: red;
+				text-decoration: none;
+			}
+
+			#hamburger-menu a:hover {
+				background: #555;
+			}
 		</style>
 	</head>
 	<body class="landing is-preload">
@@ -27,8 +66,25 @@
 
 			<!-- Header -->
 				<header id="header" class="alt">
-					<h1><a href="index.html">Movember</a> with Phi Kappa Theta</h1>
-					<nav><a href="https://eiu.phikaps.org/" style="color:#FFFFFF;">Home</a></nav>
+					<h1>
+						<a href="index.html">Movember</a>
+						with Phi Kappa Theta
+					</h1>
+
+					<nav>
+						<button id="menu-teggle"
+							type="button"
+							aria-label="Toggle navigation"
+							aria-expanded="false"
+							aria-controls="hamburger-menu">
+							&#9776;
+						</button>
+
+						<div id="hamburger-menu" hidden>
+							<a href="https://eiu.phikaps.org/">Home</a>
+							<a href="fundraising-title">Standing</a>
+							<a href="#donation-links">Donate</a>
+					</nav>
 				</header>
 
 			<!-- Banner -->
@@ -284,6 +340,21 @@
 						if (event.key === 'Escape') closePhoto();
 					});
 				}());
+
+				const menuButton = document.getElementById("menu-toggle");
+				const menu = document.getElementById("hamburger-menu");
+
+				menuButton.addEventListener("click", () => {
+					const isOpen = !menu.hidden;
+					menuButton.setAttribute("aria-expanded", String(!isOpen));
+				});
+
+				menu.querySelectorAll("a").forEach(link => {
+					link.addEventListener("click, () => {
+						menu.hidden = true;
+						menuButton.setAttribute("aria-expanded", "false");
+				});
+				});
 			</script>
 
 	</body>
