@@ -72,18 +72,17 @@
 					</h1>
 
 					<nav>
-						<button id="menu-teggle"
-							type="button"
-							aria-label="Toggle navigation"
-							aria-expanded="false"
-							aria-controls="hamburger-menu">
-							&#9776;
-						</button>
-
-						<div id="hamburger-menu" hidden>
-							<a href="https://eiu.phikaps.org/">Home</a>
-							<a href="fundraising-title">Standing</a>
-							<a href="#donation-links">Donate</a>
+				<ul>
+        			<li>
+            			<a href="https://eiu.phikaps.org/">Home</a>
+        				</li>
+        				<li>
+            				<a href="#fundraising-title">Standings</a>
+        				</li>
+        				<li>
+            			<a href="#donation-links">Donate</a>
+        			</li>
+    			</ul>
 					</nav>
 				</header>
 
@@ -341,18 +340,7 @@
 					});
 				}());
 
-				const menuButton = document.getElementById("menu-toggle");
-				const menu = document.getElementById("hamburger-menu");
-
-				menuButton.addEventListener("click", () => {
-					const isOpen = !menu.hidden;
-					menuButton.setAttribute("aria-expanded", String(!isOpen));
-				});
-
-				menu.querySelectorAll("a").forEach(link => {
-					link.addEventListener("click", () => {
-						menu.hidden = true;
-						menuButton.setAttribute("aria-expanded", "false");
+				
 				});
 				});
 			</script>
